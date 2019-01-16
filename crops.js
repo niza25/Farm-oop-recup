@@ -1,10 +1,31 @@
-class Wheat{
+class Crop {
+    constructor(acres) {
+        this.acres = acres;
+    }
+    getYieldinEuros(){
+        return this.price * this.getYieldInKg();
+    }
+};
+
+
+class Wheat extends Crop {
     constructor(acres){
-this.acres = acres
+        super(acres),
+        this.price = 1.5
     }
     getYieldInKg() {
         return Math.pow(this.acres * 1.5, 1.3)
-      }
-}
+    }
+};
 
-module.exports = {Wheat};
+class Sugarcane extends Crop {
+    constructor(acres){
+        super(acres),
+        this.price = 2
+    }
+    getYieldInKg() {
+        return Math.pow(this.acres * 2.6, 1.1)
+    }
+};
+
+module.exports = { Wheat, Crop, Sugarcane };
