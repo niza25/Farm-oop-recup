@@ -94,3 +94,4 @@ test('We can add a crop to our farm', () => {
     farm.addCrop(new Sugarcane(100))
     expect(farm.calculateIncome()).toBeCloseTo(1918.37, 1)
   })
+  
