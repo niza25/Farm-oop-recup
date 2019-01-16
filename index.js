@@ -12,17 +12,22 @@ class Farm {
         this.crops.push(crop)
     }
     calculateIncome() {
-        let cropsValue = this.crops
+        return this.crops
             .map(crop => crop.getYieldInEuros())
+            .concat(this.animals.map(animal => animal.getValueInEuros()))
             .reduce((acc, curr) => acc + curr, 0);
-        let animalsValue = this.animals
-            .map(animal => animal.getValueInEuros())
-            .reduce((acc, curr) => acc + curr, 0);
-        return cropsValue + animalsValue;
-
     }
     addAnimal(animal) {
         this.animals.push(animal);
+    }
+    printReport() {
+        console.log(
+            `----------------------
+        - Farm: ${this.name}    - 
+        - No. of crops: ${this.crops.length}  - 
+        - No. of animals: ${this.animals.length}  - 
+        - Total income: ${this.calculateIncome()}€ - 
+        ----------------------`);
     }
 }
 
@@ -33,7 +38,5 @@ class VeganFarm extends Farm {
     }
 }
 
-module.exports = { Farm, VeganFarm };
 
-let myVegan = new VeganFarm('morty');
-console.log(myVegan);
+module.exports = { Farm, VeganFarm };
