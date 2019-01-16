@@ -1,5 +1,6 @@
 const { Farm } = require('./index');
 const { Wheat, Crop, Sugarcane } = require('./crops');
+const {Animals, Pig, Horse, Cow} = require('./animals')
 
 
 test('A new Farm can be created', () => {
@@ -94,4 +95,14 @@ test('We can add a crop to our farm', () => {
     farm.addCrop(new Sugarcane(100))
     expect(farm.calculateIncome()).toBeCloseTo(1918.37, 1)
   })
+
+  test('Animals can be added to the farm', () => {
+    const farm = new Farm()
+    farm.addAnimal(new Cow(100))
+  })
   
+  test('Animals will be taken into account for calculateIncome', () => {
+    const farm = new Farm()
+    farm.addAnimal(new Cow(100))
+    expect(farm.calculateIncome()).not.toBe(0)
+  })
